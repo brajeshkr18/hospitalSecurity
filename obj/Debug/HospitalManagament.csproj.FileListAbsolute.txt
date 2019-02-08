@@ -1,7 +1,9 @@
-E:\Brajesh\GitRep\HospitalSecurity\obj\Debug\HospitalManagament.csproj.CoreCompileInputs.cache
 E:\Brajesh\GitRep\HospitalSecurity\bin\HospitalManagament.dll.config
 E:\Brajesh\GitRep\HospitalSecurity\bin\HospitalManagament.dll
 E:\Brajesh\GitRep\HospitalSecurity\bin\HospitalManagament.pdb
+E:\Brajesh\GitRep\HospitalSecurity\bin\Antlr3.Runtime.dll
+E:\Brajesh\GitRep\HospitalSecurity\bin\EntityFramework.dll
+E:\Brajesh\GitRep\HospitalSecurity\bin\EntityFramework.SqlServer.dll
 E:\Brajesh\GitRep\HospitalSecurity\bin\JWT.dll
 E:\Brajesh\GitRep\HospitalSecurity\bin\Microsoft.AspNet.Identity.Core.dll
 E:\Brajesh\GitRep\HospitalSecurity\bin\Microsoft.AspNet.SignalR.Core.dll
@@ -16,7 +18,15 @@ E:\Brajesh\GitRep\HospitalSecurity\bin\Newtonsoft.Json.dll
 E:\Brajesh\GitRep\HospitalSecurity\bin\Owin.dll
 E:\Brajesh\GitRep\HospitalSecurity\bin\reCAPTCHA.MVC.dll
 E:\Brajesh\GitRep\HospitalSecurity\bin\System.Runtime.InteropServices.RuntimeInformation.dll
+E:\Brajesh\GitRep\HospitalSecurity\bin\System.Web.Helpers.dll
+E:\Brajesh\GitRep\HospitalSecurity\bin\System.Web.Mvc.dll
+E:\Brajesh\GitRep\HospitalSecurity\bin\System.Web.Optimization.dll
+E:\Brajesh\GitRep\HospitalSecurity\bin\System.Web.Razor.dll
+E:\Brajesh\GitRep\HospitalSecurity\bin\System.Web.WebPages.Deployment.dll
+E:\Brajesh\GitRep\HospitalSecurity\bin\System.Web.WebPages.dll
+E:\Brajesh\GitRep\HospitalSecurity\bin\System.Web.WebPages.Razor.dll
 E:\Brajesh\GitRep\HospitalSecurity\bin\Twilio.dll
+E:\Brajesh\GitRep\HospitalSecurity\bin\WebGrease.dll
 E:\Brajesh\GitRep\HospitalSecurity\bin\WebMatrix.Data.dll
 E:\Brajesh\GitRep\HospitalSecurity\bin\Microsoft.AspNet.Identity.Core.xml
 E:\Brajesh\GitRep\HospitalSecurity\bin\Microsoft.AspNet.SignalR.Core.xml
@@ -29,8 +39,7 @@ E:\Brajesh\GitRep\HospitalSecurity\bin\Microsoft.Owin.Security.xml
 E:\Brajesh\GitRep\HospitalSecurity\bin\Newtonsoft.Json.xml
 E:\Brajesh\GitRep\HospitalSecurity\bin\Twilio.xml
 E:\Brajesh\GitRep\HospitalSecurity\bin\WebMatrix.Data.xml
+E:\Brajesh\GitRep\HospitalSecurity\obj\Debug\HospitalManagament.csproj.CoreCompileInputs.cache
 E:\Brajesh\GitRep\HospitalSecurity\obj\Debug\HospitalManagament.csproj.CopyComplete
 E:\Brajesh\GitRep\HospitalSecurity\obj\Debug\HospitalManagament.dll
 E:\Brajesh\GitRep\HospitalSecurity\obj\Debug\HospitalManagament.pdb
-E:\Brajesh\GitRep\HospitalSecurity\bin\Antlr3.Runtime.dll
-E:\Brajesh\GitRep\HospitalSecurity\obj\Debug\HospitalManagament.csprojAssemblyReference.cache
