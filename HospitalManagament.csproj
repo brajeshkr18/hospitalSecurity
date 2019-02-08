@@ -22,6 +22,7 @@
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <TargetFrameworkProfile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -289,7 +290,7 @@
     <Content Include="Global.asax" />
     <Content Include="HospitalManagement-updated.edmx.sql" />
     <Content Include="Init.sql" />
-    <Content Include="HospitalManagement.edmx - Copy.sql" />
+    <Content Include="HospitalManagement.sql" />
     <Content Include="HospitalManagement.edmx.sql" />
     <Content Include="js\cbpFWTabs.js" />
     <Content Include="js\chat.js" />
@@ -2120,6 +2121,7 @@
     <Content Include="plugins\bower_components\x-editable\dist\jqueryui-editable\img\loading.gif" />
     <Content Include="plugins\bower_components\x-editable\dist\jqueryui-editable\js\jqueryui-editable.js" />
     <Content Include="plugins\bower_components\x-editable\dist\jqueryui-editable\js\jqueryui-editable.min.js" />
+    <Content Include="plugins\images\aerial-architecture-blur-1692693.jpg" />
     <Content Include="plugins\images\alert.png" />
     <Content Include="plugins\images\alert2.png" />
     <Content Include="plugins\images\alert3.png" />
@@ -2190,6 +2192,7 @@
     <Content Include="plugins\images\chair2.jpg" />
     <Content Include="plugins\images\chair3.jpg" />
     <Content Include="plugins\images\chair4.jpg" />
+    <Content Include="plugins\images\clinic-doctors-glass-127873.jpg" />
     <Content Include="plugins\images\docs\resizemenu.jpg" />
     <Content Include="plugins\images\docs\sidebar.jpg" />
     <Content Include="plugins\images\docs\spinner.jpg" />
@@ -2298,6 +2301,7 @@
     <Content Include="plugins\images\sort_both.png" />
     <Content Include="plugins\images\sort_desc.png" />
     <Content Include="plugins\images\sort_desc_disabled.png" />
+    <Content Include="plugins\images\surgery-79584_1920.jpg" />
     <Content Include="plugins\images\tooltip\Euclid.png" />
     <Content Include="plugins\images\tooltip\shape1.svg" />
     <Content Include="plugins\images\tooltip\shape2.svg" />
