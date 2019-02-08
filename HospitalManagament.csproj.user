@@ -14,6 +14,11 @@
     <NameOfLastUsedPublishProfile>HospitalManagement</NameOfLastUsedPublishProfile>
     <IISExpressSSLPort>44343</IISExpressSSLPort>
     <LastActiveSolutionConfig>Debug|Any CPU</LastActiveSolutionConfig>
+    <Use64BitIISExpress />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
