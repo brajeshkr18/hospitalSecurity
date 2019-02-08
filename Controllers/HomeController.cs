@@ -234,8 +234,8 @@ namespace HospitalManagament.Controllers
                     string sha256 = Crypto.SHA256(loginModel.Password + salt);
 
                     // Check credentials
-                    //user = dataContext.Users.FirstOrDefault(u => u.Email == loginModel.Email && u.Password == sha256);
-                    user = dataContext.Users.FirstOrDefault(u => u.Email == loginModel.Email);
+                    user = dataContext.Users.FirstOrDefault(u => u.Email == loginModel.Email && u.Password == sha256);
+                    //user = dataContext.Users.FirstOrDefault(u => u.Email == loginModel.Email);
 
                     if (user != null)
                     {
