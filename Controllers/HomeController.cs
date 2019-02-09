@@ -215,136 +215,157 @@ namespace HospitalManagament.Controllers
                 HospitalManagementContext dataContext = new HospitalManagementContext();
 
                 User user = dataContext.Users.FirstOrDefault(u => u.Email == loginModel.Email);
-
-                if (user != null)
+                try
                 {
-                    if (user.IsEnabled != null && user.IsEnabled.Value == false)
-                    {
-                        ModelState.AddModelError("", "Your account is disabled");
-                        return View();
-                    }
-
-                    string salt = "";
-
-                    if (user.Salt != null)
-                    {
-                        salt = user.Salt;
-                    }
-
-                    string sha256 = Crypto.SHA256(loginModel.Password + salt);
-
-                    // Check credentials
-                    user = dataContext.Users.FirstOrDefault(u => u.Email == loginModel.Email && u.Password == sha256);
-                    //user = dataContext.Users.FirstOrDefault(u => u.Email == loginModel.Email);
-
                     if (user != null)
                     {
-                        // Perform 2 factor authentication
-                        //if (user.ContactNo != null || user.ContactNo != "")
-                        //{
-                        //    string messageId = this.SendSms(user.ContactNo);
-
-                        //    if (messageId != null)
-                        //    {
-                        //        loginModel.VerificationCode = this.verificationCode;
-                        //        HttpContext.Session["LoginModel"] = loginModel;
-                        //        HttpContext.Session["VerificationCodeExpiration"] = DateTime.Now;
-                        //        return RedirectToAction("Verify", "Home");
-                        //    }
-                        //}
-
-                        user.IsLogin = true;
-                        user.LastLogin = DateTime.Now;
-
-                        dataContext.SaveChanges();
-
-                        LoginAttempt loginAttempt = new LoginAttempt();
-
-                        loginAttempt.AttemptDateTime = DateTime.Now;
-                        loginAttempt.Email = loginModel.Email;
-                        loginAttempt.IsPassed = true;
-                        loginAttempt.IpAddress = Request.UserHostAddress;
-
-                        dataContext.LoginAttempts.Add(loginAttempt);
-
-                        dataContext.SaveChanges();
-
-                        HttpContext.Session["LoggedInUser"] = user;
-                        // Check if admin
-                        if (user.Role.Name == "Admin")
+                        if (user.IsEnabled != null && user.IsEnabled.Value == false)
                         {
-                            HttpContext.Session["Role"] = "Admin";
-                            HttpContext.Session["TotalPatientList"] = dataContext.Users.Where(u => u.Patient != null).Where(u => u.Patient.Status == "Admitted").ToList();
-                            HttpContext.Session["TotalPatients"] = dataContext.Users.Count(u => u.Patient != null && u.Patient.Status == "Admitted");
-                            HttpContext.Session["TotalCaregiverList"] = dataContext.Users.Where(u => u.Caregiver != null).ToList();
-                            HttpContext.Session["TotalCareGivers"] = dataContext.Users.Count(u => u.Caregiver != null);
-                            HttpContext.Session["TotalDoctorList"] = dataContext.Users.Where(u => u.Doctor != null).ToList();
-                            HttpContext.Session["TotalDoctors"] = dataContext.Users.Count(u => u.Doctor != null);
-                            HttpContext.Session["RecetlyRegisteredUserList"] = dataContext.Users.OrderByDescending(u => u.Id).Take(10).ToList();
-                            HttpContext.Session["TotalLoginUsers"] = dataContext.Users.Count(u => u.IsLogin != null && u.IsLogin == true);
-                            HttpContext.Session["TotalLogoutUsers"] = dataContext.Users.Count(u => u.IsLogin == null || u.IsLogin == false);
-                            HttpContext.Session["TotalInactive"] = dataContext.Users.Count(u => (u.IsLogin == null || u.IsLogin == false) && u.LastLogin != null && DbFunctions.DiffDays(u.LastLogin.Value, DateTime.Now) > 1);
-
-                            return RedirectToAction("Index", "Home");
+                            ModelState.AddModelError("", "Your account is disabled");
+                            return View();
                         }
 
-                        else if (user.Role.Name == "Patient")
+                        string salt = "";
+
+                        if (user.Salt != null)
                         {
-                            HttpContext.Session["Patient"] = user.Patient;
-                            HttpContext.Session["PatientId"] = user.Patient.Id;
-                            HttpContext.Session["Doctor"] = null;
-                            HttpContext.Session["DoctorId"] = -1;
-                            HttpContext.Session["Role"] = "Patient";
-                            return RedirectToAction("Index", "Patient");
+                            salt = user.Salt;
                         }
 
-                        else if (user.Role.Name == "Caregiver")
-                        {
-                            HttpContext.Session["Role"] = "Caregiver";
-                            return RedirectToAction("Index", "CareGiver");
-                        }
+                        string sha256 = Crypto.SHA256(loginModel.Password + salt);
 
-                        else if (user.Role.Name == "Doctor")
+                        // Check credentials
+                        user = dataContext.Users.FirstOrDefault(u => u.Email == loginModel.Email && u.Password == sha256);
+                        //user = dataContext.Users.FirstOrDefault(u => u.Email == loginModel.Email);
+
+                        if (user != null)
                         {
-                            HttpContext.Session["Patient"] = null;
-                            HttpContext.Session["PatientId"] = -1;
-                            HttpContext.Session["Doctor"] = user.Doctor;
-                            HttpContext.Session["DoctorId"] = user.Doctor.Id;
-                            HttpContext.Session["Role"] = "Doctor";
-                            return RedirectToAction("Index", "Doctor");
+                            // Perform 2 factor authentication
+                            //if (user.ContactNo != null || user.ContactNo != "")
+                            //{
+                            //    string messageId = this.SendSms(user.ContactNo);
+
+                            //    if (messageId != null)
+                            //    {
+                            //        loginModel.VerificationCode = this.verificationCode;
+                            //        HttpContext.Session["LoginModel"] = loginModel;
+                            //        HttpContext.Session["VerificationCodeExpiration"] = DateTime.Now;
+                            //        return RedirectToAction("Verify", "Home");
+                            //    }
+                            //}
+
+                            user.IsLogin = true;
+                            user.LastLogin = DateTime.Now;
+                            user.IsEnabled = true;
+
+                            dataContext.SaveChanges();
+
+                            LoginAttempt loginAttempt = new LoginAttempt();
+
+                            loginAttempt.AttemptDateTime = DateTime.Now;
+                            loginAttempt.Email = loginModel.Email;
+                            loginAttempt.IsPassed = true;
+                            loginAttempt.IpAddress = Request.UserHostAddress;
+
+                            dataContext.LoginAttempts.Add(loginAttempt);
+
+                            dataContext.SaveChanges();
+
+                            HttpContext.Session["LoggedInUser"] = user;
+                            // Check if admin
+                            if (user.Role.Name == "Admin")
+                            {
+                                HttpContext.Session["Role"] = "Admin";
+                                HttpContext.Session["TotalPatientList"] = dataContext.Users.Where(u => u.Patient != null).Where(u => u.Patient.Status == "Admitted").ToList();
+                                HttpContext.Session["TotalPatients"] = dataContext.Users.Count(u => u.Patient != null && u.Patient.Status == "Admitted");
+                                HttpContext.Session["TotalCaregiverList"] = dataContext.Users.Where(u => u.Caregiver != null).ToList();
+                                HttpContext.Session["TotalCareGivers"] = dataContext.Users.Count(u => u.Caregiver != null);
+                                HttpContext.Session["TotalDoctorList"] = dataContext.Users.Where(u => u.Doctor != null).ToList();
+                                HttpContext.Session["TotalDoctors"] = dataContext.Users.Count(u => u.Doctor != null);
+                                HttpContext.Session["RecetlyRegisteredUserList"] = dataContext.Users.OrderByDescending(u => u.Id).Take(10).ToList();
+                                HttpContext.Session["TotalLoginUsers"] = dataContext.Users.Count(u => u.IsLogin != null && u.IsLogin == true);
+                                HttpContext.Session["TotalLogoutUsers"] = dataContext.Users.Count(u => u.IsLogin == null || u.IsLogin == false);
+                                HttpContext.Session["TotalInactive"] = dataContext.Users.Count(u => (u.IsLogin == null || u.IsLogin == false) && u.LastLogin != null && DbFunctions.DiffDays(u.LastLogin.Value, DateTime.Now) > 1);
+
+                                return RedirectToAction("Index", "Home");
+                            }
+
+                            else if (user.Role.Name == "Patient")
+                            {
+                                HttpContext.Session["Patient"] = user.Patient;
+                                HttpContext.Session["PatientId"] = user.Patient.Id;
+                                HttpContext.Session["Doctor"] = null;
+                                HttpContext.Session["DoctorId"] = -1;
+                                HttpContext.Session["Role"] = "Patient";
+                                return RedirectToAction("Index", "Patient");
+                            }
+
+                            else if (user.Role.Name == "Caregiver")
+                            {
+                                HttpContext.Session["Role"] = "Caregiver";
+                                return RedirectToAction("Index", "CareGiver");
+                            }
+
+                            else if (user.Role.Name == "Doctor")
+                            {
+                                HttpContext.Session["Patient"] = null;
+                                HttpContext.Session["PatientId"] = -1;
+                                HttpContext.Session["Doctor"] = user.Doctor;
+                                HttpContext.Session["DoctorId"] = user.Doctor.Id;
+                                HttpContext.Session["Role"] = "Doctor";
+                                return RedirectToAction("Index", "Doctor");
+                            }
+                        }
+                        // Invalid credentials
+                        else
+                        {
+                            user = dataContext.Users.FirstOrDefault(u => u.Email == loginModel.Email);
+                            // Log login attempt
+                            int loginAttemptCount = user.LoginAttemptCount == null ? 0 : user.LoginAttemptCount.Value;
+
+                            if (loginAttemptCount >= maxLoginAttempt)
+                            {
+                                // Disable the account
+
+                                user.IsEnabled = false;
+                                user.EnableToken = GenerateRandomString(8);
+
+                                var resetLink = "<a href='" + Url.Action("EnableAccount", "Home", new { email = user.Email, token = user.EnableToken }, "http") + "'>Enable Account Now</a>";
+                                string body = "Someone try to login to your account. We disabled your account.<br/><br/><b>You can enable your account by clicking below link</b><br/>" + resetLink;
+
+                                try
+                                {
+                                    SendEMail(user.Email, "Invalid Login Attempt", body);
+                                }
+                                catch (Exception e)
+                                {
+                                    // Do what you want
+                                }
+                            }
+
+                            user.LoginAttemptCount = loginAttemptCount + 1;
+
+                            dataContext.SaveChanges();
+
+                            // Add database entry
+                            LoginAttempt loginAttempt = new LoginAttempt();
+
+                            loginAttempt.AttemptDateTime = DateTime.Now;
+                            loginAttempt.Email = loginModel.Email;
+                            loginAttempt.Password = loginModel.Password;
+                            loginAttempt.IsPassed = false;
+                            loginAttempt.IpAddress = Request.UserHostAddress;
+
+                            dataContext.LoginAttempts.Add(loginAttempt);
+
+                            dataContext.SaveChanges();
+
+                            ModelState.AddModelError("", "Invalid username or password");
                         }
                     }
                     // Invalid credentials
                     else
                     {
-                        user = dataContext.Users.FirstOrDefault(u => u.Email == loginModel.Email);
-                        // Log login attempt
-                        int loginAttemptCount = user.LoginAttemptCount == null ? 0 : user.LoginAttemptCount.Value;
-
-                        if (loginAttemptCount >= maxLoginAttempt)
-                        {
-                            // Disable the account
-
-                            user.IsEnabled = false;
-                            user.EnableToken = GenerateRandomString(8);
-
-                            var resetLink = "<a href='" + Url.Action("EnableAccount", "Home", new { email = user.Email, token = user.EnableToken }, "http") + "'>Enable Account Now</a>";
-                            string body = "Someone try to login to your account. We disabled your account.<br/><br/><b>You can enable your account by clicking below link</b><br/>" + resetLink;
-
-                            try
-                            {
-                                SendEMail(user.Email, "Invalid Login Attempt", body);
-                            }
-                            catch (Exception e)
-                            {
-                                // Do what you want
-                            }
-                        }
-
-                        user.LoginAttemptCount = loginAttemptCount + 1;
-
-                        dataContext.SaveChanges();
-
                         // Add database entry
                         LoginAttempt loginAttempt = new LoginAttempt();
 
@@ -361,24 +382,11 @@ namespace HospitalManagament.Controllers
                         ModelState.AddModelError("", "Invalid username or password");
                     }
                 }
-                // Invalid credentials
-                else
+                catch (Exception ex)
                 {
-                    // Add database entry
-                    LoginAttempt loginAttempt = new LoginAttempt();
 
-                    loginAttempt.AttemptDateTime = DateTime.Now;
-                    loginAttempt.Email = loginModel.Email;
-                    loginAttempt.Password = loginModel.Password;
-                    loginAttempt.IsPassed = false;
-                    loginAttempt.IpAddress = Request.UserHostAddress;
-
-                    dataContext.LoginAttempts.Add(loginAttempt);
-
-                    dataContext.SaveChanges();
-
-                    ModelState.AddModelError("", "Invalid username or password");
                 }
+                
             }
 
             return View();
@@ -855,7 +863,7 @@ namespace HospitalManagament.Controllers
                 new CountLoginAttemptPerMonth(0 , 0, "December")
             };
 
-            List<CountLoginAttemptPerMonth> countLoginAttemptPerMonth = dataContext.Database.SqlQuery<CountLoginAttemptPerMonth>("select DATENAME(month, DateAdd( month , Month(l.AttemptDateTime) , 0 ) - 1) Month, count(case when l.IsPassed = 0 then 1 end) FailAttempts, count(case when l.IsPassed = 1 then 1 end) SuccessAttempts from [HospitalManagement].[dbo].[LoginAttempts] l where YEAR(l.AttemptDateTime) = ' " + DateTime.Now.Year + " ' GROUP BY MONTH(l.AttemptDateTime);").ToList();
+            List<CountLoginAttemptPerMonth> countLoginAttemptPerMonth = dataContext.Database.SqlQuery<CountLoginAttemptPerMonth>("select DATENAME(month, DateAdd( month , Month(l.AttemptDateTime) , 0 ) - 1) Month, count(case when l.IsPassed = 0 then 1 end) FailAttempts, count(case when l.IsPassed = 1 then 1 end) SuccessAttempts from [LoginAttempts] l where YEAR(l.AttemptDateTime) = ' " + DateTime.Now.Year + " ' GROUP BY MONTH(l.AttemptDateTime);").ToList();
 
             for (int i = 0; i < countLoginAttemptPerMonthFinal.Count; i++)
             {

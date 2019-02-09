@@ -2122,7 +2122,6 @@
     <Content Include="plugins\bower_components\x-editable\dist\jqueryui-editable\img\loading.gif" />
     <Content Include="plugins\bower_components\x-editable\dist\jqueryui-editable\js\jqueryui-editable.js" />
     <Content Include="plugins\bower_components\x-editable\dist\jqueryui-editable\js\jqueryui-editable.min.js" />
-    <Content Include="plugins\images\aerial-architecture-blur-1692693.jpg" />
     <Content Include="plugins\images\alert.png" />
     <Content Include="plugins\images\alert2.png" />
     <Content Include="plugins\images\alert3.png" />
@@ -3266,6 +3265,7 @@
     <Content Include="Views\Home\ForgotPassword.cshtml" />
     <Content Include="Views\Home\ResetPassword.cshtml" />
     <Content Include="Views\Home\InvalidToken.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\HospitalManagement.pubxml" />
     <Content Include="Views\Home\Success.cshtml" />
     <Content Include="Views\Home\Security.cshtml" />
