@@ -43,7 +43,7 @@ namespace HospitalManagament.Controllers
                 oldUser.Age = user.Age;
                 oldUser.ContactNo = user.ContactNo;
                 oldUser.Patient.Disease = user.Patient.Disease;
-                oldUser.Email = user.Email;
+                //oldUser.Email = user.Email;
                 oldUser.Patient.Occupation = user.Patient.Occupation;
                 oldUser.Gender = user.Gender;
                 oldUser.Address = user.Address;

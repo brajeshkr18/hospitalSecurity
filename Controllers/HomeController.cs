@@ -215,6 +215,7 @@ namespace HospitalManagament.Controllers
                 HospitalManagementContext dataContext = new HospitalManagementContext();
 
                 User user = dataContext.Users.FirstOrDefault(u => u.Email == loginModel.Email);
+                string sha256 = string.Empty;
                 try
                 {
                     if (user != null)
@@ -227,13 +228,16 @@ namespace HospitalManagament.Controllers
 
                         string salt = "";
 
-                        if (user.Salt != null)
+                        if (!string.IsNullOrEmpty(user.Salt))
                         {
                             salt = user.Salt;
+                            sha256 = Crypto.SHA256(loginModel.Password + salt);
                         }
-
-                        string sha256 = Crypto.SHA256(loginModel.Password + salt);
-
+                        else
+                        {
+                            sha256 = Crypto.SHA256(loginModel.Password);
+                        }
+  
                         // Check credentials
                         user = dataContext.Users.FirstOrDefault(u => u.Email == loginModel.Email && u.Password == sha256);
                         //user = dataContext.Users.FirstOrDefault(u => u.Email == loginModel.Email);
@@ -773,7 +777,7 @@ namespace HospitalManagament.Controllers
         {
             HospitalManagementContext dataContext = new HospitalManagementContext();
 
-            List<CountGendersPerMonth> GenderMonth = dataContext.Database.SqlQuery<CountGendersPerMonth>("Select u.Gender, p.EntryDate ActualDate, datename(month, DATEPART(MONTH, p.EntryDate)) month, DATEPART(MONTH, p.EntryDate) monthnumber, COUNT(p.User_Id) count from [HospitalManagement].[dbo].[Patients] p,[HospitalManagement].[dbo].[Users] u where u.Id = p.User_Id and p.Status = 'Admitted' group by DATEPART(MONTH, p.EntryDate), p.EntryDate, u.Gender").ToList();
+            List<CountGendersPerMonth> GenderMonth = dataContext.Database.SqlQuery<CountGendersPerMonth>("Select u.Gender, p.EntryDate ActualDate, datename(month, DATEPART(MONTH, p.EntryDate)) month, DATEPART(MONTH, p.EntryDate) monthnumber, COUNT(p.User_Id) count from [dbo].[Patients] p,[dbo].[Users] u where u.Id = p.User_Id and p.Status = 'Admitted' group by DATEPART(MONTH, p.EntryDate), p.EntryDate, u.Gender").ToList();
 
             // Create months list
             var labels = new List<string>() { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
@@ -824,7 +828,12 @@ namespace HospitalManagament.Controllers
                 new CountGendersPerMonth(0 , 0, "December")
             };
 
-            List<CountGendersPerMonth> GenderMonth = dataContext.Database.SqlQuery<CountGendersPerMonth>("select datename(month, p.EntryDate) Month, count(case when u.Gender = 'Female' then 1 end) FemaleCount, count(case when u.Gender = 'Male' then 1 end) MaleCount from [HospitalManagement].[dbo].[Patients] p left join [HospitalManagement].[dbo].[Users] u on p.User_Id = u.Id where p.Status = 'Admitted' group by datename(month, p.EntryDate);").ToList();
+            List<CountGendersPerMonth> GenderMonth = dataContext.Database.SqlQuery<
+                CountGendersPerMonth>("select datename(month, p.EntryDate) " +
+                "Month, count(case when u.Gender = 'Female' then 1 end)" +
+                " FemaleCount, count(case when u.Gender = 'Male' then 1 end)" +
+                " MaleCount from [dbo].[Patients] p left join [dbo].[Users] " +
+                "u on p.User_Id = u.Id where p.Status = 'Admitted' group by datename(month, p.EntryDate);").ToList();
 
             for (int i = 0; i < GenderMonthFinal.Count; i++)
             {
@@ -885,7 +894,7 @@ namespace HospitalManagament.Controllers
         {
             HospitalManagementContext DataContext = new HospitalManagementContext();
 
-            List<DiseasePercentage> DiseasePercentages = DataContext.Database.SqlQuery<DiseasePercentage>("select top 5 count(p.Disease) Count, p.Disease Label from[HospitalManagement].[dbo].Patients p where p.Status = 'Admitted' group by p.Disease order by count(p.Disease) desc").ToList();
+            List<DiseasePercentage> DiseasePercentages = DataContext.Database.SqlQuery<DiseasePercentage>("select top 5 count(p.Disease) Count, p.Disease Label from [dbo].Patients p where p.Status = 'Admitted' group by p.Disease order by count(p.Disease) desc").ToList();
 
             // Set color of each percecnage section
 

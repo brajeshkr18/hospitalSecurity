@@ -289,10 +289,6 @@
     <Content Include="css\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="HospitalManagement-updated.edmx.sql" />
-    <Content Include="Init.sql" />
-    <Content Include="HospitalManagement.sql" />
-    <Content Include="HospitalManagement.edmx.sql" />
     <Content Include="js\cbpFWTabs.js" />
     <Content Include="js\chat.js" />
     <Content Include="js\custom.js" />
@@ -2336,7 +2332,6 @@
     <Content Include="plugins\images\users\varun.jpg" />
     <Content Include="Scripts\jquery.signalR-2.2.1.js" />
     <Content Include="Scripts\jquery.signalR-2.2.1.min.js" />
-    <Content Include="Temp.sql" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

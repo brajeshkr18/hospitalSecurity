@@ -1,81 +1,79 @@
-USE [master]
+﻿USE [master]
 GO
-/****** Object:  Database [HospitalManagement]    Script Date: 02/08/2019 6:40:40 PM ******/
-CREATE DATABASE [HospitalManagement]
+/****** Object:  Database [HospitalSecurity]    Script Date: 04-04-2020 12:43:18 ******/
+CREATE DATABASE [HospitalSecurity]
  CONTAINMENT = NONE
  ON  PRIMARY 
-( NAME = N'HospitalManagement', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.SQLEXPRESS\MSSQL\DATA\HospitalManagement.mdf' , SIZE = 3264KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+( NAME = N'HospitalSecurity', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL11.MSSQLSERVER\MSSQL\DATA\HospitalSecurity.mdf' , SIZE = 3136KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
  LOG ON 
-( NAME = N'HospitalManagement_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.SQLEXPRESS\MSSQL\DATA\HospitalManagement_log.ldf' , SIZE = 832KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
+( NAME = N'HospitalSecurity_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL11.MSSQLSERVER\MSSQL\DATA\HospitalSecurity_log.ldf' , SIZE = 832KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
 GO
-ALTER DATABASE [HospitalManagement] SET COMPATIBILITY_LEVEL = 120
+ALTER DATABASE [HospitalSecurity] SET COMPATIBILITY_LEVEL = 110
 GO
 IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
 begin
-EXEC [HospitalManagement].[dbo].[sp_fulltext_database] @action = 'enable'
+EXEC [HospitalSecurity].[dbo].[sp_fulltext_database] @action = 'enable'
 end
 GO
-ALTER DATABASE [HospitalManagement] SET ANSI_NULL_DEFAULT OFF 
+ALTER DATABASE [HospitalSecurity] SET ANSI_NULL_DEFAULT OFF 
 GO
-ALTER DATABASE [HospitalManagement] SET ANSI_NULLS OFF 
+ALTER DATABASE [HospitalSecurity] SET ANSI_NULLS OFF 
 GO
-ALTER DATABASE [HospitalManagement] SET ANSI_PADDING OFF 
+ALTER DATABASE [HospitalSecurity] SET ANSI_PADDING OFF 
 GO
-ALTER DATABASE [HospitalManagement] SET ANSI_WARNINGS OFF 
+ALTER DATABASE [HospitalSecurity] SET ANSI_WARNINGS OFF 
 GO
-ALTER DATABASE [HospitalManagement] SET ARITHABORT OFF 
+ALTER DATABASE [HospitalSecurity] SET ARITHABORT OFF 
 GO
-ALTER DATABASE [HospitalManagement] SET AUTO_CLOSE ON 
+ALTER DATABASE [HospitalSecurity] SET AUTO_CLOSE ON 
 GO
-ALTER DATABASE [HospitalManagement] SET AUTO_SHRINK OFF 
+ALTER DATABASE [HospitalSecurity] SET AUTO_SHRINK OFF 
 GO
-ALTER DATABASE [HospitalManagement] SET AUTO_UPDATE_STATISTICS ON 
+ALTER DATABASE [HospitalSecurity] SET AUTO_UPDATE_STATISTICS ON 
 GO
-ALTER DATABASE [HospitalManagement] SET CURSOR_CLOSE_ON_COMMIT OFF 
+ALTER DATABASE [HospitalSecurity] SET CURSOR_CLOSE_ON_COMMIT OFF 
 GO
-ALTER DATABASE [HospitalManagement] SET CURSOR_DEFAULT  GLOBAL 
+ALTER DATABASE [HospitalSecurity] SET CURSOR_DEFAULT  GLOBAL 
 GO
-ALTER DATABASE [HospitalManagement] SET CONCAT_NULL_YIELDS_NULL OFF 
+ALTER DATABASE [HospitalSecurity] SET CONCAT_NULL_YIELDS_NULL OFF 
 GO
-ALTER DATABASE [HospitalManagement] SET NUMERIC_ROUNDABORT OFF 
+ALTER DATABASE [HospitalSecurity] SET NUMERIC_ROUNDABORT OFF 
 GO
-ALTER DATABASE [HospitalManagement] SET QUOTED_IDENTIFIER OFF 
+ALTER DATABASE [HospitalSecurity] SET QUOTED_IDENTIFIER OFF 
 GO
-ALTER DATABASE [HospitalManagement] SET RECURSIVE_TRIGGERS OFF 
+ALTER DATABASE [HospitalSecurity] SET RECURSIVE_TRIGGERS OFF 
 GO
-ALTER DATABASE [HospitalManagement] SET  ENABLE_BROKER 
+ALTER DATABASE [HospitalSecurity] SET  ENABLE_BROKER 
 GO
-ALTER DATABASE [HospitalManagement] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+ALTER DATABASE [HospitalSecurity] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
 GO
-ALTER DATABASE [HospitalManagement] SET DATE_CORRELATION_OPTIMIZATION OFF 
+ALTER DATABASE [HospitalSecurity] SET DATE_CORRELATION_OPTIMIZATION OFF 
 GO
-ALTER DATABASE [HospitalManagement] SET TRUSTWORTHY OFF 
+ALTER DATABASE [HospitalSecurity] SET TRUSTWORTHY OFF 
 GO
-ALTER DATABASE [HospitalManagement] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+ALTER DATABASE [HospitalSecurity] SET ALLOW_SNAPSHOT_ISOLATION OFF 
 GO
-ALTER DATABASE [HospitalManagement] SET PARAMETERIZATION SIMPLE 
+ALTER DATABASE [HospitalSecurity] SET PARAMETERIZATION SIMPLE 
 GO
-ALTER DATABASE [HospitalManagement] SET READ_COMMITTED_SNAPSHOT OFF 
+ALTER DATABASE [HospitalSecurity] SET READ_COMMITTED_SNAPSHOT OFF 
 GO
-ALTER DATABASE [HospitalManagement] SET HONOR_BROKER_PRIORITY OFF 
+ALTER DATABASE [HospitalSecurity] SET HONOR_BROKER_PRIORITY OFF 
 GO
-ALTER DATABASE [HospitalManagement] SET RECOVERY SIMPLE 
+ALTER DATABASE [HospitalSecurity] SET RECOVERY SIMPLE 
 GO
-ALTER DATABASE [HospitalManagement] SET  MULTI_USER 
+ALTER DATABASE [HospitalSecurity] SET  MULTI_USER 
 GO
-ALTER DATABASE [HospitalManagement] SET PAGE_VERIFY CHECKSUM  
+ALTER DATABASE [HospitalSecurity] SET PAGE_VERIFY CHECKSUM  
 GO
-ALTER DATABASE [HospitalManagement] SET DB_CHAINING OFF 
+ALTER DATABASE [HospitalSecurity] SET DB_CHAINING OFF 
 GO
-ALTER DATABASE [HospitalManagement] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+ALTER DATABASE [HospitalSecurity] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
 GO
-ALTER DATABASE [HospitalManagement] SET TARGET_RECOVERY_TIME = 0 SECONDS 
+ALTER DATABASE [HospitalSecurity] SET TARGET_RECOVERY_TIME = 0 SECONDS 
 GO
-ALTER DATABASE [HospitalManagement] SET DELAYED_DURABILITY = DISABLED 
+USE [HospitalSecurity]
 GO
-USE [HospitalManagement]
-GO
-/****** Object:  Table [dbo].[Caregivers]    Script Date: 02/08/2019 6:40:41 PM ******/
+/****** Object:  Table [dbo].[Caregivers]    Script Date: 04-04-2020 12:43:18 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -91,7 +89,7 @@ CREATE TABLE [dbo].[Caregivers](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Doctors]    Script Date: 02/08/2019 6:40:41 PM ******/
+/****** Object:  Table [dbo].[Doctors]    Script Date: 04-04-2020 12:43:18 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -108,7 +106,7 @@ CREATE TABLE [dbo].[Doctors](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Events]    Script Date: 02/08/2019 6:40:41 PM ******/
+/****** Object:  Table [dbo].[Events]    Script Date: 04-04-2020 12:43:18 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -134,7 +132,7 @@ CREATE TABLE [dbo].[Events](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[LoginAttempts]    Script Date: 02/08/2019 6:40:41 PM ******/
+/****** Object:  Table [dbo].[LoginAttempts]    Script Date: 04-04-2020 12:43:18 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -153,7 +151,7 @@ CREATE TABLE [dbo].[LoginAttempts](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Messages]    Script Date: 02/08/2019 6:40:41 PM ******/
+/****** Object:  Table [dbo].[Messages]    Script Date: 04-04-2020 12:43:18 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -171,7 +169,7 @@ CREATE TABLE [dbo].[Messages](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Patients]    Script Date: 02/08/2019 6:40:41 PM ******/
+/****** Object:  Table [dbo].[Patients]    Script Date: 04-04-2020 12:43:18 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -192,7 +190,7 @@ CREATE TABLE [dbo].[Patients](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Roles]    Script Date: 02/08/2019 6:40:41 PM ******/
+/****** Object:  Table [dbo].[Roles]    Script Date: 04-04-2020 12:43:18 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -207,7 +205,7 @@ CREATE TABLE [dbo].[Roles](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Users]    Script Date: 02/08/2019 6:40:41 PM ******/
+/****** Object:  Table [dbo].[Users]    Script Date: 04-04-2020 12:43:18 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -275,6 +273,28 @@ INSERT [dbo].[LoginAttempts] ([Id], [Email], [Password], [IsPassed], [AttemptDat
 GO
 INSERT [dbo].[LoginAttempts] ([Id], [Email], [Password], [IsPassed], [AttemptDateTime], [IpAddress]) VALUES (12, N'd1@d1.com', NULL, 1, CAST(N'2019-02-08 16:48:03.073' AS DateTime), N'::1')
 GO
+INSERT [dbo].[LoginAttempts] ([Id], [Email], [Password], [IsPassed], [AttemptDateTime], [IpAddress]) VALUES (13, N'admin@admin.com', N'admin@admin.com', 0, CAST(N'2020-04-04 12:14:16.903' AS DateTime), N'::1')
+GO
+INSERT [dbo].[LoginAttempts] ([Id], [Email], [Password], [IsPassed], [AttemptDateTime], [IpAddress]) VALUES (14, N'admin@admin.com', N'TTest@123', 0, CAST(N'2020-04-04 12:14:46.787' AS DateTime), N'::1')
+GO
+INSERT [dbo].[LoginAttempts] ([Id], [Email], [Password], [IsPassed], [AttemptDateTime], [IpAddress]) VALUES (15, N'admin@admin.com', NULL, 1, CAST(N'2020-04-04 12:16:35.847' AS DateTime), N'::1')
+GO
+INSERT [dbo].[LoginAttempts] ([Id], [Email], [Password], [IsPassed], [AttemptDateTime], [IpAddress]) VALUES (16, N'admin@admin.com', NULL, 1, CAST(N'2020-04-04 12:26:05.683' AS DateTime), N'::1')
+GO
+INSERT [dbo].[LoginAttempts] ([Id], [Email], [Password], [IsPassed], [AttemptDateTime], [IpAddress]) VALUES (17, N'admin@admin.com', NULL, 1, CAST(N'2020-04-04 12:28:41.723' AS DateTime), N'::1')
+GO
+INSERT [dbo].[LoginAttempts] ([Id], [Email], [Password], [IsPassed], [AttemptDateTime], [IpAddress]) VALUES (18, N'doctor@doctor.com', N'TTest@123', 0, CAST(N'2020-04-04 12:29:19.280' AS DateTime), N'::1')
+GO
+INSERT [dbo].[LoginAttempts] ([Id], [Email], [Password], [IsPassed], [AttemptDateTime], [IpAddress]) VALUES (19, N'admin@admin.com', NULL, 1, CAST(N'2020-04-04 12:29:38.943' AS DateTime), N'::1')
+GO
+INSERT [dbo].[LoginAttempts] ([Id], [Email], [Password], [IsPassed], [AttemptDateTime], [IpAddress]) VALUES (20, N'doctor@doctor.com', N'TTest@123', 0, CAST(N'2020-04-04 12:30:33.950' AS DateTime), N'::1')
+GO
+INSERT [dbo].[LoginAttempts] ([Id], [Email], [Password], [IsPassed], [AttemptDateTime], [IpAddress]) VALUES (21, N'd1@d1.com', NULL, 1, CAST(N'2020-04-04 12:33:09.733' AS DateTime), N'::1')
+GO
+INSERT [dbo].[LoginAttempts] ([Id], [Email], [Password], [IsPassed], [AttemptDateTime], [IpAddress]) VALUES (22, N'p5@p5.com', NULL, 1, CAST(N'2020-04-04 12:34:28.570' AS DateTime), N'::1')
+GO
+INSERT [dbo].[LoginAttempts] ([Id], [Email], [Password], [IsPassed], [AttemptDateTime], [IpAddress]) VALUES (23, N'd1@d1.com', NULL, 1, CAST(N'2020-04-04 12:35:15.363' AS DateTime), N'::1')
+GO
 SET IDENTITY_INSERT [dbo].[LoginAttempts] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Messages] ON 
@@ -284,6 +304,9 @@ INSERT [dbo].[Messages] ([Id], [Text], [DoctorId], [PatientId], [FromPatient]) V
 GO
 INSERT [dbo].[Messages] ([Id], [Text], [DoctorId], [PatientId], [FromPatient]) VALUES (2, N'hello doctor
 ', 1, 1, 1)
+GO
+INSERT [dbo].[Messages] ([Id], [Text], [DoctorId], [PatientId], [FromPatient]) VALUES (3, N'hi 
+', 1, 5, 0)
 GO
 SET IDENTITY_INSERT [dbo].[Messages] OFF
 GO
@@ -320,67 +343,67 @@ GO
 SET IDENTITY_INSERT [dbo].[Users] ON 
 
 GO
-INSERT [dbo].[Users] ([Id], [Email], [Password], [Salt], [UserName], [Age], [Gender], [NRIC], [Comments], [Address], [ContactNo], [FullName], [Token], [OTP], [OTPExpiration], [IsLogin], [LastLogin], [IsEnabled], [EnableToken], [LoginAttemptCount], [Role_Id]) VALUES (1, N'admin@admin.com', N'8C6976E5B5410415BDE908BD4DEE15DFB167A9C873FC4BB8A81F6F2AB448A918', N'', N'admin', 35, N'Male', N'Admin NRIC', N'', N'Address', N'+6591548630', N'Admin', NULL, NULL, NULL, 0, CAST(N'2019-02-08 16:44:48.463' AS DateTime), NULL, NULL, 2, 1)
+INSERT [dbo].[Users] ([Id], [Email], [Password], [Salt], [UserName], [Age], [Gender], [NRIC], [Comments], [Address], [ContactNo], [FullName], [Token], [OTP], [OTPExpiration], [IsLogin], [LastLogin], [IsEnabled], [EnableToken], [LoginAttemptCount], [Role_Id]) VALUES (1, N'admin@admin.com', N'5EDFA2692BDACC5E6EE805C626C50CB44CEBB065F092D9A1067D89F74DACD326', N'', N'admin', 35, N'Male', N'Admin NRIC', N'', N'Address', N'+6591548630', N'Admin', NULL, NULL, NULL, 0, CAST(N'2020-04-04 12:29:38.940' AS DateTime), 1, N'wm9yKgWt', 4, 1)
 GO
-INSERT [dbo].[Users] ([Id], [Email], [Password], [Salt], [UserName], [Age], [Gender], [NRIC], [Comments], [Address], [ContactNo], [FullName], [Token], [OTP], [OTPExpiration], [IsLogin], [LastLogin], [IsEnabled], [EnableToken], [LoginAttemptCount], [Role_Id]) VALUES (2, N'p1@p1.com', N'patient', NULL, N'patient', 25, N'Female', N'Patient NRIC', N'', N'Address', N'48572947', N'Imran', N'7458150f-4cf9-40b8-b0fe-ef4b64d28fa7', N'eUqC3OEa', CAST(N'2019-02-08 13:07:30.740' AS DateTime), 1, CAST(N'2019-02-08 16:47:03.020' AS DateTime), NULL, NULL, 1, 2)
+INSERT [dbo].[Users] ([Id], [Email], [Password], [Salt], [UserName], [Age], [Gender], [NRIC], [Comments], [Address], [ContactNo], [FullName], [Token], [OTP], [OTPExpiration], [IsLogin], [LastLogin], [IsEnabled], [EnableToken], [LoginAttemptCount], [Role_Id]) VALUES (2, N'p1@p1.com', N'patient', N'FeS3If2rD4', N'patient', 25, N'Female', N'Patient NRIC', N'', N'Address', N'48572947', N'Imran', N'7458150f-4cf9-40b8-b0fe-ef4b64d28fa7', N'eUqC3OEa', CAST(N'2019-02-08 13:07:30.740' AS DateTime), 1, CAST(N'2019-02-08 16:47:03.020' AS DateTime), NULL, NULL, 1, 2)
 GO
-INSERT [dbo].[Users] ([Id], [Email], [Password], [Salt], [UserName], [Age], [Gender], [NRIC], [Comments], [Address], [ContactNo], [FullName], [Token], [OTP], [OTPExpiration], [IsLogin], [LastLogin], [IsEnabled], [EnableToken], [LoginAttemptCount], [Role_Id]) VALUES (3, N'p2@p2.com', N'patient', NULL, N'patient', 25, N'Male', N'Patient NRIC', N'', N'Address', N'48572947', N'P1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2)
+INSERT [dbo].[Users] ([Id], [Email], [Password], [Salt], [UserName], [Age], [Gender], [NRIC], [Comments], [Address], [ContactNo], [FullName], [Token], [OTP], [OTPExpiration], [IsLogin], [LastLogin], [IsEnabled], [EnableToken], [LoginAttemptCount], [Role_Id]) VALUES (3, N'p2@p2.com', N'patient', N'FeS3If2rD4', N'patient', 25, N'Male', N'Patient NRIC', N'', N'Address', N'48572947', N'P1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2)
 GO
-INSERT [dbo].[Users] ([Id], [Email], [Password], [Salt], [UserName], [Age], [Gender], [NRIC], [Comments], [Address], [ContactNo], [FullName], [Token], [OTP], [OTPExpiration], [IsLogin], [LastLogin], [IsEnabled], [EnableToken], [LoginAttemptCount], [Role_Id]) VALUES (4, N'p3@p3.com', N'patient', NULL, N'patient', 25, N'Female', N'Patient NRIC', N'', N'Address', N'48572947', N'P3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2)
+INSERT [dbo].[Users] ([Id], [Email], [Password], [Salt], [UserName], [Age], [Gender], [NRIC], [Comments], [Address], [ContactNo], [FullName], [Token], [OTP], [OTPExpiration], [IsLogin], [LastLogin], [IsEnabled], [EnableToken], [LoginAttemptCount], [Role_Id]) VALUES (4, N'p3@p3.com', N'patient', N'FeS3If2rD4', N'patient', 25, N'Female', N'Patient NRIC', N'', N'Address', N'48572947', N'P3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2)
 GO
-INSERT [dbo].[Users] ([Id], [Email], [Password], [Salt], [UserName], [Age], [Gender], [NRIC], [Comments], [Address], [ContactNo], [FullName], [Token], [OTP], [OTPExpiration], [IsLogin], [LastLogin], [IsEnabled], [EnableToken], [LoginAttemptCount], [Role_Id]) VALUES (5, N'p4@p2.com', N'patient', NULL, N'patient', 25, N'Male', N'Patient NRIC', N'', N'Address', N'48572947', N'P4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2)
+INSERT [dbo].[Users] ([Id], [Email], [Password], [Salt], [UserName], [Age], [Gender], [NRIC], [Comments], [Address], [ContactNo], [FullName], [Token], [OTP], [OTPExpiration], [IsLogin], [LastLogin], [IsEnabled], [EnableToken], [LoginAttemptCount], [Role_Id]) VALUES (5, N'p4@p2.com', N'patient', N'FeS3If2rD4', N'patient', 25, N'Male', N'Patient NRIC', N'', N'Address', N'48572947', N'P4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2)
 GO
-INSERT [dbo].[Users] ([Id], [Email], [Password], [Salt], [UserName], [Age], [Gender], [NRIC], [Comments], [Address], [ContactNo], [FullName], [Token], [OTP], [OTPExpiration], [IsLogin], [LastLogin], [IsEnabled], [EnableToken], [LoginAttemptCount], [Role_Id]) VALUES (6, N'p5@p5.com', N'patient', NULL, N'patient', 25, N'Female', N'Patient NRIC', N'', N'Address', N'48572947', N'P5', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2)
+INSERT [dbo].[Users] ([Id], [Email], [Password], [Salt], [UserName], [Age], [Gender], [NRIC], [Comments], [Address], [ContactNo], [FullName], [Token], [OTP], [OTPExpiration], [IsLogin], [LastLogin], [IsEnabled], [EnableToken], [LoginAttemptCount], [Role_Id]) VALUES (6, N'p5@p5.com', N'40F99105CE3F07E65CD36BD9437A0637973F570D1E773427B46F1B59BEAC4D40', N'FeS3If2rD4', N'patient', 25, N'Female', N'Patient NRIC', N'', N'Address', N'48572947', N'P5', NULL, NULL, NULL, 1, CAST(N'2020-04-04 12:34:20.990' AS DateTime), 1, NULL, NULL, 2)
 GO
-INSERT [dbo].[Users] ([Id], [Email], [Password], [Salt], [UserName], [Age], [Gender], [NRIC], [Comments], [Address], [ContactNo], [FullName], [Token], [OTP], [OTPExpiration], [IsLogin], [LastLogin], [IsEnabled], [EnableToken], [LoginAttemptCount], [Role_Id]) VALUES (7, N'd1@d1.com', N'doctor', NULL, N'd', 25, N'Female', N'Doctor NRIC', N'', N'Address', N'48572947', N'Doctor', NULL, NULL, NULL, 1, CAST(N'2019-02-08 16:48:02.970' AS DateTime), NULL, NULL, NULL, 4)
+INSERT [dbo].[Users] ([Id], [Email], [Password], [Salt], [UserName], [Age], [Gender], [NRIC], [Comments], [Address], [ContactNo], [FullName], [Token], [OTP], [OTPExpiration], [IsLogin], [LastLogin], [IsEnabled], [EnableToken], [LoginAttemptCount], [Role_Id]) VALUES (7, N'd1@d1.com', N'74A4800C600E989CDA61319EE72F512E2D2B418EBE97B120ED8F86B0F495B4B8', N'FeS3If2rD4', N'd', 25, N'Female', N'Doctor NRIC', N'', N'Address', N'48572947', N'Doctor', NULL, NULL, NULL, 1, CAST(N'2020-04-04 12:35:15.360' AS DateTime), 1, NULL, NULL, 4)
 GO
 INSERT [dbo].[Users] ([Id], [Email], [Password], [Salt], [UserName], [Age], [Gender], [NRIC], [Comments], [Address], [ContactNo], [FullName], [Token], [OTP], [OTPExpiration], [IsLogin], [LastLogin], [IsEnabled], [EnableToken], [LoginAttemptCount], [Role_Id]) VALUES (8, N'hello@123.com', N'2B1803278A240429DBE5D27F76580EC73C2D206AAF3C39013A2A2AA9D0F5DFD4', N'FeS3If2rD4', NULL, NULL, N'Male', NULL, NULL, NULL, N'8585858585', NULL, NULL, NULL, NULL, 1, CAST(N'2019-02-07 19:32:47.803' AS DateTime), 1, NULL, 0, 2)
 GO
 SET IDENTITY_INSERT [dbo].[Users] OFF
 GO
-/****** Object:  Index [IX_FK_PatientCaregiver]    Script Date: 02/08/2019 6:40:41 PM ******/
+/****** Object:  Index [IX_FK_PatientCaregiver]    Script Date: 04-04-2020 12:43:18 ******/
 CREATE NONCLUSTERED INDEX [IX_FK_PatientCaregiver] ON [dbo].[Caregivers]
 (
 	[Patient_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_FK_UserCaregiver]    Script Date: 02/08/2019 6:40:41 PM ******/
+/****** Object:  Index [IX_FK_UserCaregiver]    Script Date: 04-04-2020 12:43:18 ******/
 CREATE NONCLUSTERED INDEX [IX_FK_UserCaregiver] ON [dbo].[Caregivers]
 (
 	[User_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_FK_UserDoctor]    Script Date: 02/08/2019 6:40:41 PM ******/
+/****** Object:  Index [IX_FK_UserDoctor]    Script Date: 04-04-2020 12:43:18 ******/
 CREATE NONCLUSTERED INDEX [IX_FK_UserDoctor] ON [dbo].[Doctors]
 (
 	[User_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_FK_UserEvent]    Script Date: 02/08/2019 6:40:41 PM ******/
+/****** Object:  Index [IX_FK_UserEvent]    Script Date: 04-04-2020 12:43:18 ******/
 CREATE NONCLUSTERED INDEX [IX_FK_UserEvent] ON [dbo].[Events]
 (
 	[UserId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_FK_DoctorMessage]    Script Date: 02/08/2019 6:40:41 PM ******/
+/****** Object:  Index [IX_FK_DoctorMessage]    Script Date: 04-04-2020 12:43:18 ******/
 CREATE NONCLUSTERED INDEX [IX_FK_DoctorMessage] ON [dbo].[Messages]
 (
 	[DoctorId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_FK_PatientMessage]    Script Date: 02/08/2019 6:40:41 PM ******/
+/****** Object:  Index [IX_FK_PatientMessage]    Script Date: 04-04-2020 12:43:18 ******/
 CREATE NONCLUSTERED INDEX [IX_FK_PatientMessage] ON [dbo].[Messages]
 (
 	[PatientId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_FK_UserPatient]    Script Date: 02/08/2019 6:40:41 PM ******/
+/****** Object:  Index [IX_FK_UserPatient]    Script Date: 04-04-2020 12:43:18 ******/
 CREATE NONCLUSTERED INDEX [IX_FK_UserPatient] ON [dbo].[Patients]
 (
 	[User_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_FK_UserRole]    Script Date: 02/08/2019 6:40:41 PM ******/
+/****** Object:  Index [IX_FK_UserRole]    Script Date: 04-04-2020 12:43:18 ******/
 CREATE NONCLUSTERED INDEX [IX_FK_UserRole] ON [dbo].[Users]
 (
 	[Role_Id] ASC
@@ -428,5 +451,5 @@ ALTER TABLE [dbo].[Users] CHECK CONSTRAINT [FK_UserRole]
 GO
 USE [master]
 GO
-ALTER DATABASE [HospitalManagement] SET  READ_WRITE 
+ALTER DATABASE [HospitalSecurity] SET  READ_WRITE 
 GO

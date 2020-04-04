@@ -202,7 +202,7 @@ namespace HospitalManagament.Controllers
             {
                 HospitalManagementContext db = new HospitalManagementContext();
 
-                allEvents = db.Database.SqlQuery<Event>("select * from[HospitalManagement].[dbo].Events e where e.UserId = " + user.Id).ToList();
+                allEvents = db.Database.SqlQuery<Event>("select * from [dbo].Events e where e.UserId = " + user.Id).ToList();
 
                 //allEvents = (List<Event>) db.Events.ToList().Where(e => e.UserId == user.Id);
             }
