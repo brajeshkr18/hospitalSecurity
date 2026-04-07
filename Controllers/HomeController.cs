@@ -203,7 +203,7 @@ namespace HospitalManagament.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-            return View();
+            return View(new LoginModel());
         }
 
         // Do login for a user and redirect to specific page w.r.t. user role
